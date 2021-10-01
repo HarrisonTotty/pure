@@ -55,6 +55,17 @@ fn basic_structure_expression() {
 }
 
 #[test]
+fn basic_transformation() {
+    let t = Transformation {
+        rules: vec![
+            (|x| x.value() == Value::Integer(4), |x| x + 1)
+        ]
+    };
+    assert_eq!(t(Expression::from(3)), Expression::from(3));
+    assert_eq!(t(Expression::from(4)), Expression::from(4) + Expression::from(1));
+}
+
+#[test]
 fn empty_structure() {
     let s = EmptyStructure;
     assert_eq!(s.kind(), "None");

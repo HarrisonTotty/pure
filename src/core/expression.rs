@@ -8,6 +8,12 @@ pub type Expressions = Vec<Expression>;
 #[derive(Clone, Debug)]
 pub struct Expression(pub std::rc::Rc<dyn Structure>);
 
+impl std::convert::From<Expression> for (Expression, Expression) {
+    fn from(ex: Expression) -> (Expression, Expression) {
+        ex.tuple()
+    }
+}
+
 impl std::ops::Deref for Expression {
     type Target = std::rc::Rc<dyn Structure>;
     fn deref(&self) -> &Self::Target {
@@ -18,6 +24,14 @@ impl std::ops::Deref for Expression {
 impl std::fmt::Display for Expression {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", &self.0)
+    }
+}
+
+impl std::iter::IntoIterator for Expression {
+    type Item = Expression;
+    type IntoIter = std::vec::IntoIter<Expression>;
+    fn into_iter(self) -> Self::IntoIter {
+        self.0.elements().into_iter()
     }
 }
 

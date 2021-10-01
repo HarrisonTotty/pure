@@ -11,8 +11,9 @@ readme       = "README.md"
 version      = "0.1.0"
 
 [dependencies]
-ron        = "*"
-serde      = { version = "*", features = ["derive"] }
-serde_json = "*"
-serde_yaml = "*"
-typetag    = "*"
+lazy_static = "*"
+ron         = "*"
+serde       = { version = "*", features = ["derive"] }
+serde_json  = "*"
+serde_yaml  = "*"
+typetag     = "*"
