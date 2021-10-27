@@ -11,10 +11,10 @@ pub const INTEGER_ARITHMETIC: Rule = |e| {
         if let Value::Integer(v) = ex.value() {
             if let Some(curr) = result {
                 result = Some(match kind.as_str() {
-                    "ArithmeticAddition" => curr + v,
-                    "ArithmeticDivision" => curr / v,
-                    "ArithmeticMultiplication" => curr * v,
-                    "ArithmeticSubtraction" => curr - v,
+                    "Addition" => curr + v,
+                    "Division" => curr / v,
+                    "Multiplication" => curr * v,
+                    "Subtraction" => curr - v,
                     _ => panic!("invalid operation")
                 })
             } else {
@@ -29,7 +29,7 @@ pub const INTEGER_ARITHMETIC: Rule = |e| {
 /// Otherwise, returns the input expression over `1`.
 pub const INTO_FRACTION: Rule = |e| {
     match e.kind().as_str() {
-        "ArithmeticDivision" => e,
+        "Division" => e,
         _ => Division(e, integer(1)).into()
     }
 };

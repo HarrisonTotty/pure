@@ -44,3 +44,8 @@ impl std::fmt::Display for Symbol {
         write!(f, "{}", self.0)
     }
 }
+
+/// Creates a new symbol expression from the given string.
+pub fn symbol(label: &str) -> Expression {
+    label.into()
+}

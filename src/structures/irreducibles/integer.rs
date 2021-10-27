@@ -35,3 +35,8 @@ impl std::fmt::Display for Integer {
         write!(f, "{}", self.0)
     }
 }
+
+/// Creates a new integer expression from the given value.
+pub fn integer(val: i64) -> Expression {
+    val.into()
+}

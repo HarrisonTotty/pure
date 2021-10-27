@@ -2,8 +2,6 @@
 
 use crate::core::*;
 
-/// Arithmetic addition.
-pub const ADDITION: Match = |e| e.kind() == "ArithmeticAddition";
 
 /// Arithmetic addition between an expression and the integer `0`.
 pub const ADDITION_IDENTITY: Match = |e| e.elements().iter().any(|i| ZERO(i.clone()));
@@ -39,9 +37,6 @@ pub const ARITHMETIC_OVER_INTEGERS: Match = |e| ARITHMETIC(e.clone()) && ALL_INT
 /// Any binary operation.
 pub const BINARY_OPERATION: Match = |e| match e.value() { Value::BinaryOperation(_, _, _) => true, _ => false };
 
-/// Arithmetic division.
-pub const DIVISION: Match = |e| e.kind() == "ArithmeticDivision";
-
 /// An expression with no sub-elements.
 pub const EMPTY: Match = |e| e.elements().len() == 0;
 
@@ -51,26 +46,29 @@ pub const FIRST_ONE: Match = |e| e.first() == Expression::from(1);
 /// An expression whose first element is the integer `0`.
 pub const FIRST_ZERO: Match = |e| e.first() == Expression::from(0);
 
-/// An integer.
-pub const INTEGER: Match = |e| e.kind() == "Integer";
-
 /// An expression whose last element is the integer `1`.
 pub const LAST_ONE: Match = |e| e.last() == Expression::from(1);
 
 /// An expression whose last element is the integer `0`.
 pub const LAST_ZERO: Match = |e| e.last() == Expression::from(0);
 
-/// Arithmetic multiplication.
-pub const MULTIPLICATION: Match = |e| e.kind() == "ArithmeticMultiplication";
-
 /// The integer `1`.
 pub const ONE: Match = |e| e == Expression::from(1);
 
+/// Trigonometric Secant.
+pub const SEC: Match = |e| e.kind() == "Secant";
+
+/// Trigonometric Sine.
+pub const SIN: Match = |e| e.kind() == "Sine";
+
 /// Arithmetic subtraction.
-pub const SUBTRACTION: Match = |e| e.kind() == "ArithmeticSubtraction";
+pub const SUBTRACTION: Match = |e| e.kind() == "Subtraction";
 
 /// Any symbol.
 pub const SYMBOL: Match = |e| e.kind() == "Symbol";
+
+/// Trigonometric Tangent.
+pub const TAN: Match = |e| e.kind() == "Tangent";
 
 /// The integer `0`.
 pub const ZERO: Match = |e| e == Expression::from(0);

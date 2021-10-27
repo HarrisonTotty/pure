@@ -8,7 +8,7 @@ fn addition_explicit() {
     let y = symbol("y");
     let add = Addition(x, y);
 
-    assert_eq!(add.kind(), "ArithmeticAddition");
+    assert_eq!(add.kind(), "Addition");
     assert_eq!(
         Expression::from(add.clone()),
         Expression::from(Addition(symbol("x"), symbol("y")))
@@ -24,7 +24,7 @@ fn addition_implicit() {
     let y = symbol("y");
     let add = x + y;
 
-    assert_eq!(add.kind(), "ArithmeticAddition");
+    assert_eq!(add.kind(), "Addition");
     assert_eq!(
         add,
         symbol("x") + symbol("y")

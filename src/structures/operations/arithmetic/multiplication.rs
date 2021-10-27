@@ -14,7 +14,7 @@ impl Structure for Multiplication {
     }
 
     fn value(&self) -> Value {
-        Value::BinaryOperation(String::from("ArithmeticMultiplication"), self.0.clone(), self.1.clone())
+        Value::BinaryOperation(String::from("Multiplication"), self.0.clone(), self.1.clone())
     }
 }
 

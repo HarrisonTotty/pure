@@ -7,3 +7,6 @@ mod symbol;
 pub use boolean::Boolean;
 pub use integer::Integer;
 pub use symbol::Symbol;
+
+pub use integer::integer;
+pub use symbol::symbol;

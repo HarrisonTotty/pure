@@ -16,7 +16,7 @@ impl Structure for Addition {
     }
 
     fn value(&self) -> Value {
-        Value::BinaryOperation(String::from("ArithmeticAddition"), self.0.clone(), self.1.clone())
+        Value::BinaryOperation(String::from("Addition"), self.0.clone(), self.1.clone())
     }
 }
 
