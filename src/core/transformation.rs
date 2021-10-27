@@ -13,7 +13,14 @@ pub struct Transformation {
 }
 
 impl Transformation {
-    pub fn apply_transformation(&self, expression: Expression) -> Expression {
+    /// Applies this transformation until the structure of the output expression
+    /// does not change.
+    pub fn apply(&self, expression: Expression) -> Expression {
+        self.apply_once(expression)
+    }
+
+    /// Applied this transformation once.
+    pub fn apply_once(&self, expression: Expression) -> Expression {
         for (rmatch, rule) in &self.rules {
             if rmatch(expression.clone()) {
                 return rule(expression.clone())
@@ -29,20 +36,20 @@ impl Transformation {
 
 impl Fn<(Expression,)> for Transformation {
     extern "rust-call" fn call(&self, args: (Expression, )) -> Self::Output {
-        self.apply_transformation(args.0)
+        self.apply(args.0)
     }
 }
 
 impl FnMut<(Expression,)> for Transformation {
     extern "rust-call" fn call_mut(&mut self, args: (Expression, )) -> Self::Output {
-        self.apply_transformation(args.0)
+        self.apply(args.0)
     }
 }
 
 impl FnOnce<(Expression,)> for Transformation {
     type Output = Expression;
     extern "rust-call" fn call_once(self, args: (Expression, )) -> Self::Output {
-        self.apply_transformation(args.0)
+        self.apply(args.0)
     }
 }
 

@@ -39,8 +39,12 @@ lazy_static! {
             (|e| matches::all_flat_kind("/", "z")(e), rules::INTEGER_ARITHMETIC),
         ]
     };
-    /// Provides arithmetic.
-    pub static ref ARITHMETIC: Transformation = INTEGER_ARITHMETIC.to_owned() + ARITHMETIC_IDENTITIES.to_owned();
+    /// Provides arithmetic simplification.
+    pub static ref ARITHMETIC: Transformation = INTEGER_ARITHMETIC.to_owned() + ARITHMETIC_IDENTITIES.to_owned() + Transformation {
+        rules: vec![
+            // x + x - x
+        ]
+    };
     /// Provides common trigonometric identities.
     pub static ref TRIGONOMETRIC_IDENTITIES: Transformation = Transformation {
         rules: vec![
