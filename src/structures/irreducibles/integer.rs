@@ -6,11 +6,8 @@ use crate::core::*;
 pub struct Integer(pub i64);
 
 impl Structure for Integer {
-    fn attributes(&self) -> Attributes {
-        vec![
-            Attribute::Irreducible,
-            Attribute::Number
-        ]
+    fn from_elements(&self, _elements: Expressions) -> Expression {
+        self.clone().into()
     }
 
     fn value(&self) -> Value {

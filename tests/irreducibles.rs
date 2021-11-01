@@ -8,10 +8,8 @@ fn booleans() {
     let b2: Expression = false.into();
 
     assert_eq!(b1.kind(), "Boolean");
-    assert_eq!(b1.label(), None);
     assert_eq!(b1.value(), Value::Boolean(true));
     assert_eq!(b2.kind(), "Boolean");
-    assert_eq!(b2.label(), None);
     assert_eq!(b2.value(), Value::Boolean(false));
 
     assert_eq!(b1.clone(), Expression::from(true));
@@ -27,13 +25,10 @@ fn integers() {
     let i3 = integer(2);
 
     assert_eq!(i1.kind(), "Integer");
-    assert_eq!(i1.label(), None);
     assert_eq!(i1.value(), Value::Integer(0));
     assert_eq!(i2.kind(), "Integer");
-    assert_eq!(i2.label(), None);
     assert_eq!(i2.value(), Value::Integer(1));
     assert_eq!(i3.kind(), "Integer");
-    assert_eq!(i3.label(), None);
     assert_eq!(i3.value(), Value::Integer(2));
 
     assert_eq!(i1.clone(), Expression::from(0));
@@ -52,12 +47,10 @@ fn symbols() {
     let z = symbol("z");
 
     assert_eq!(x.kind(), "Symbol");
-    assert_eq!(x.label(), Some(String::from("x")));
     assert_eq!(x.value(), Value::Symbol(String::from("x")));
     assert_eq!(y.kind(), "Symbol");
     assert_eq!(y.value(), Value::Symbol(String::from("y")));
     assert_eq!(z.kind(), "Symbol");
-    assert_eq!(z.label(), Some(String::from("z")));
     assert_eq!(z.value(), Value::Symbol(String::from("z")));
 
     assert_eq!(x.clone(), symbol("x"));

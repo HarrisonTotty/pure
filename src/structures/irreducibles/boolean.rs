@@ -6,10 +6,8 @@ use crate::core::*;
 pub struct Boolean(pub bool);
 
 impl Structure for Boolean {
-    fn attributes(&self) -> Attributes {
-        vec![
-            Attribute::Irreducible
-        ]
+    fn from_elements(&self, _elements: Expressions) -> Expression {
+        self.clone().into()
     }
 
     fn value(&self) -> Value {

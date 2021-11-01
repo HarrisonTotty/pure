@@ -1,4 +1,4 @@
-//! Arithmetic Operatio
+//! Arithmetic Operations
 
 mod addition;
 mod division;
@@ -9,3 +9,8 @@ pub use addition::Addition;
 pub use division::Division;
 pub use multiplication::Multiplication;
 pub use subtraction::Subtraction;
+
+pub use addition::addition;
+pub use division::division;
+pub use multiplication::multiplication;
+pub use subtraction::subtraction;

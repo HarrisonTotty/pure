@@ -7,7 +7,7 @@ use crate::prelude::*;
 pub const INTEGER_ARITHMETIC: Rule = |e| {
     let kind = e.kind();
     let mut result: Option<i64> = None;
-    for ex in e.flat_elements() {
+    for ex in e.flat_elements().unwrap() {
         if let Value::Integer(v) = ex.value() {
             if let Some(curr) = result {
                 result = Some(match kind.as_str() {
@@ -35,13 +35,13 @@ pub const INTO_FRACTION: Rule = |e| {
 };
 
 /// Returns the first element of the expression.
-pub const FIRST: Rule = |e| e.elements().first().unwrap().to_owned();
+pub const FIRST: Rule = |e| e.first().unwrap();
 
 /// Returns the integer `1`.
 pub const ONE: Rule = |_| Expression::from(1);
 
 /// Returns the last element of the expression.
-pub const LAST: Rule = |e| e.elements().last().unwrap().to_owned();
+pub const LAST: Rule = |e| e.last().unwrap();
 
 /// Returns the integer `0`.
 pub const ZERO: Rule = |_| Expression::from(0);

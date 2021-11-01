@@ -2,6 +2,7 @@
 
 use crate::core::{Expression, Expressions};
 
+/// A collection of attributes.
 pub type Attributes = Vec<Attribute>;
 
 /// Represents an attribute that can be associated with a structure.

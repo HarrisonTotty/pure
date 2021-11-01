@@ -2,14 +2,16 @@
 
 use crate::core::Structure;
 
+/// Represents a collection of mathematical expressions.
 pub type Expressions = Vec<Expression>;
 
-/// Represents a mathematical expression.
+/// Represents a mathematical expression, which is defined to be a pointer to
+/// some underlying mathematical structure.
 #[derive(Clone, Debug)]
 pub struct Expression(pub std::rc::Rc<dyn Structure>);
 
-impl std::convert::From<Expression> for (Expression, Expression) {
-    fn from(ex: Expression) -> (Expression, Expression) {
+impl std::convert::From<Expression> for Option<(Expression, Expression)> {
+    fn from(ex: Expression) -> Option<(Expression, Expression)> {
         ex.tuple()
     }
 }
@@ -31,7 +33,11 @@ impl std::iter::IntoIterator for Expression {
     type Item = Expression;
     type IntoIter = std::vec::IntoIter<Expression>;
     fn into_iter(self) -> Self::IntoIter {
-        self.0.elements().into_iter()
+        if let Some(el) = self.0.elements() {
+            el.into_iter()
+        } else {
+            Vec::new().into_iter()
+        }
     }
 }
 

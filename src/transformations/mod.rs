@@ -2,7 +2,6 @@
 
 use lazy_static::lazy_static;
 
-pub mod helpers;
 pub mod matches;
 pub mod rules;
 
@@ -19,7 +18,7 @@ lazy_static! {
             // x / 1 = x
             (|e| matches::last("/", 1.into())(e), rules::FIRST),
             // x / x = 1
-            (|e| matches::all("/", e.first())(e), rules::ONE),
+            (|e| matches::all_eq("/")(e), rules::ONE),
             // 1 * x = x
             (|e| matches::first("*", 1.into())(e), rules::LAST),
             // x * 1 = x
@@ -27,7 +26,7 @@ lazy_static! {
             // x - 0 = x
             (|e| matches::last("-", 0.into())(e), rules::FIRST),
             // x - x = 0
-            (|e| matches::all("-", e.first())(e), rules::ZERO)
+            (|e| matches::all_eq("-")(e), rules::ZERO)
         ]
     };
     /// Provides arithmetic between integers.
@@ -42,7 +41,8 @@ lazy_static! {
     /// Provides arithmetic simplification.
     pub static ref ARITHMETIC: Transformation = INTEGER_ARITHMETIC.to_owned() + ARITHMETIC_IDENTITIES.to_owned() + Transformation {
         rules: vec![
-            // x + x - x
+            // ax + bx = (a + b)x
+
         ]
     };
     /// Provides common trigonometric identities.

@@ -7,6 +7,8 @@ pub type Rule = fn(Expression) -> Expression;
 pub type Map = (Match, Rule);
 pub type Maps = Vec<Map>;
 
+/// Represents a transformation engine, responsible for converting one
+/// expression into another.
 #[derive(Clone, Debug)]
 pub struct Transformation {
     pub rules: Maps
@@ -16,21 +18,61 @@ impl Transformation {
     /// Applies this transformation until the structure of the output expression
     /// does not change.
     pub fn apply(&self, expression: Expression) -> Expression {
-        self.apply_once(expression)
+        let mut current = expression.clone();
+        while let Some(rule) = self.has_match(current.clone()) {
+            current = rule(current);
+        }
+        current
+    }
+
+    /// Applied this transformation to the elements of an expression until the
+    /// collection of elements does not change.
+    pub fn apply_elements(&self, expression: Expression) -> Expression {
+        let mut current = expression.clone();
+        loop {
+            let new = self.apply_elements_once(current.clone());
+            if new == current {
+                break;
+            } else {
+                current = new;
+            }
+        }
+        current
+    }
+
+    /// Applied this transformation to the elements of an expression.
+    pub fn apply_elements_once(&self, expression: Expression) -> Expression {
+        if let Some(elements) = expression.elements() {
+            let mut new_elements: Vec<Expression> = Vec::new();
+            for element in elements {
+                match self.has_match(element.clone()) {
+                    Some(rule) => new_elements.push(rule(element)),
+                    None => new_elements.push(element)
+                };
+            }
+            expression.from_elements(new_elements)
+        } else {
+            expression
+        }
     }
 
     /// Applied this transformation once.
     pub fn apply_once(&self, expression: Expression) -> Expression {
-        for (rmatch, rule) in &self.rules {
-            if rmatch(expression.clone()) {
-                return rule(expression.clone())
-            }
+        match self.has_match(expression.clone()) {
+            Some(rule) => rule(expression.clone()),
+            None => expression.clone()
         }
-        expression.clone()
     }
 
-    pub fn has_match(&self, expression: Expression) -> bool {
-        self.rules.iter().any(|(i, _)| i(expression.clone()))
+    /// Returns whether the specified expression may be transformed by this
+    /// transformation, and the rule that would transform it.
+    pub fn has_match(&self, expression: Expression) -> Option<Rule> {
+        for (rmatch, rule) in &self.rules {
+            if rmatch(expression.clone()) {
+                return Some(*rule)
+            }
+        }
+        None
     }
 }
 

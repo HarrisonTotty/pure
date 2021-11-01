@@ -6,14 +6,8 @@ use crate::core::*;
 pub struct Symbol(pub String);
 
 impl Structure for Symbol {
-    fn attributes(&self) -> Attributes {
-        vec![
-            Attribute::Irreducible
-        ]
-    }
-
-    fn label(&self) -> Option<String> {
-        Some(self.0.clone())
+    fn from_elements(&self, _elements: Expressions) -> Expression {
+        self.clone().into()
     }
 
     fn value(&self) -> Value {
