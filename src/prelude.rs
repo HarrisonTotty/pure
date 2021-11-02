@@ -1,4 +1,7 @@
-//! Common Definitions and functions
+//! Common Definitions and Functions
+//!
+//! The `pure` prelude allows one to easily access the most common mathematical
+//! structures and transformations.
 
 pub use crate::core::*;
 pub use crate::structures::irreducibles::*;

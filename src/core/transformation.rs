@@ -1,14 +1,31 @@
-//! Expression Transformation Definition
+//! Expression Transformations
+//!
+//! The following module containes the definition of a mathematical
+//! `Transformation`, as well as its associated types and implementations.
 
 use crate::core::Expression;
 
+/// A function which returns whether an input `Expression` matches a defined
+/// criteria.
 pub type Match = fn(Expression) -> bool;
+
+/// A function which creates a new `Expression` optionally based on the
+/// components of a given input `Expression.`
 pub type Rule = fn(Expression) -> Expression;
+
+/// A tuple containing a `Match` function as well as a `Rule` function to apply
+/// if the result of the `Match` function is `true`.
 pub type Map = (Match, Rule);
+
+/// A vector of `Map` tuples.
 pub type Maps = Vec<Map>;
 
 /// Represents a transformation engine, responsible for converting one
-/// expression into another.
+/// `Expression` into another.
+///
+/// `Transformation` objects are defined with a set of `Map` tuples which
+/// generate new `Expression` objects if their makeup matches some defined
+/// criteria.
 #[derive(Clone, Debug)]
 pub struct Transformation {
     pub rules: Maps

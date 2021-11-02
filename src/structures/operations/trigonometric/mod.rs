@@ -1,4 +1,7 @@
 //! Trigonometric Operations
+//!
+//! The following module contains structure defintions for the various
+//! trigonometric operations, such as `Sine` and `Cosine`.
 
 mod arccosecant;
 mod arccosine;

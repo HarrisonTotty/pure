@@ -1,4 +1,6 @@
 //! Transformation Matches
+//!
+//! The following module contains a collection of functions which may be
 
 use crate::core::*;
 

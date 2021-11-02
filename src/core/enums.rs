@@ -27,7 +27,6 @@ pub enum Attribute {
     Vector
 }
 
-
 /// Represents the enumerable (rust) value of a structure.
 #[derive(Clone, Debug, PartialEq)]
 pub enum Value {

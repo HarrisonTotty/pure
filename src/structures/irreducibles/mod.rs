@@ -1,4 +1,7 @@
 //! Irreducible (Atomic) Structures
+//!
+//! Irreducible structures (commonly referred as "atomic" structures) are those
+//! which do not contain any elements.
 
 mod boolean;
 mod integer;

@@ -1,4 +1,6 @@
 //! Core Components
+//!
+//! The `core` module contains the fundamental components which comprise `pure`.
 
 mod enums;
 mod expression;

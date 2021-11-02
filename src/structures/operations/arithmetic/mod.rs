@@ -1,4 +1,7 @@
 //! Arithmetic Operations
+//!
+//! The following module provides structure definitions for the various
+//! elementary arithmetic operations, such as `Addition` and `Division`.
 
 mod addition;
 mod division;
