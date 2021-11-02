@@ -1,7 +1,7 @@
 //! Builtin Transformation Tests
 
 use pure::prelude::*;
-use pure::transformations::*;
+use pure::transformations::transformations::arithmetic::*;
 
 #[test]
 fn arithmetic() {

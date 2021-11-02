@@ -83,6 +83,20 @@ pub fn first_last_kind(root: &'static str, first: &'static str, last: &'static s
     move |e| iskind!(e, root) && match (e.first(), e.last()) { (Some(f), Some(l)) => iskind!(f, first) && iskind!(l, last), _ => false }
 }
 
+/// Returns a match object which matches the kind of an expression and the kinds
+/// of its first and last elements.
+pub fn first_last_kind_d2(
+    root: &'static str,
+    first: &'static str,
+    last: &'static str,
+    first_first: &'static str,
+    first_last: &'static str,
+    last_first: &'static str,
+    last_last: &'static str
+) -> impl Fn(Expression) -> bool {
+    move |e| iskind!(e, root) && match (e.first(), e.last()) { (Some(f), Some(l)) => first_last_kind(first, first_first, first_last)(f) && first_last_kind(last, last_first, last_last)(l), _ => false }
+}
+
 /// Returns a match object for matching against the specified kind.
 pub fn kind(root: &'static str) -> impl Fn(Expression) -> bool {
     move |e| iskind!(e, root)
