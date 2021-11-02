@@ -113,7 +113,7 @@ pub trait Structure: std::fmt::Debug + std::fmt::Display {
     }
 
     /// Whether this structure is structurally identical to another.
-    fn is_identical_to(&self, other: Expression) -> bool {
+    fn is_identical_to(&self, other: &Expression) -> bool {
         self.value() == other.value()
     }
 

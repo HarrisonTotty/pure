@@ -43,7 +43,7 @@ impl std::iter::IntoIterator for Expression {
 
 impl std::cmp::PartialEq for Expression {
     fn eq(&self, other: &Self) -> bool {
-        self.is_identical_to(other.to_owned())
+        self.is_identical_to(other)
     }
 }
 
