@@ -1,0 +1,22 @@
+[package]
+authors      = ["Harrison Totty <harrisongtotty@gmail.com>"]
+description  = "A symbolic mathematics library for rust."
+edition      = "2021"
+exclude      = [".*"]
+include      = ["/examples", "/src"]
+license-file = "LICENSE"
+name         = "pure"
+publish      = false
+readme       = "README.md"
+version      = "0.1.0"
+
+[lib]
+#proc-macro = true
+
+[dependencies]
+lazy_static = "*"
+ron         = "*"
+serde       = { version = "*", features = ["derive"] }
+serde_json  = "*"
+serde_yaml  = "*"
+typetag     = "*"

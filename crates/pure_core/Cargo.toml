@@ -1,0 +1,11 @@
+[package]
+authors      = ["Harrison Totty <harrisongtotty@gmail.com>"]
+description  = "A symbolic mathematics library for rust."
+edition      = "2021"
+exclude      = [".*"]
+include      = ["/src"]
+license-file = "LICENSE"
+name         = "pure_core"
+publish      = false
+readme       = "README.md"
+version      = "0.1.0"
